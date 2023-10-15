@@ -1,6 +1,10 @@
+"use strict";
+
+/** API Route for CRUD operations for ContactInformation */
+
 import ContactInformation from "@/app/models/ContactInformation";
 // import { NextResponse } from "next/server";
-// import ContactInformationSchema from "@/app/schemas/ContactInformationSchema";
+import ContactInformationSchema from "@/app/schemas/ContactInformationSchema";
 import { validate } from "jsonschema";
 
 export async function GET() {
@@ -15,7 +19,10 @@ export async function GET() {
     }
 };
 
-export async function POST() {
+export async function POST(request:Request) {
+    console.log(request.body)
+    const validator = validate(request.body, ContactInformationSchema, { required:true})
+    console.log(validator.valid);
     const data = { value: 'success' };
     return Response.json({ data })
 }

@@ -1,7 +1,7 @@
 import sequelize from "@/app/config";
 import { DataTypes } from "sequelize";
 
-const ContactInformation = sequelize.define('ContactInformation', {
+const ContactInformation = sequelize.define('contact_information', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -22,6 +22,10 @@ const ContactInformation = sequelize.define('ContactInformation', {
             isEmail: true,
         },
     },
+    location: {
+        type: DataTypes.STRING,
+        allowNull:true,
+    }
 })
 
 // ContactInformation.init(

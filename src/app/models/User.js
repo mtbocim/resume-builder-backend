@@ -1,30 +1,31 @@
 import sequelize from "@/app/config";
 import { DataTypes } from "sequelize";
 
-const User = sequelize.define('user',{
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
+const User = sequelize.define('users', {
+    username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        primaryKey: true
     },
-    first_name:{
+    first_name: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    last_name:{
+    last_name: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    email:{
+    email: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
             isEmail: true,
         },
     },
-    password:{
-
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
-});
+}, { freezeTableName: true });
 
 export default User;

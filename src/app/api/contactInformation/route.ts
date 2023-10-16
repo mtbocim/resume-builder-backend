@@ -17,20 +17,16 @@ export async function GET() {
 };
 
 export async function POST(request: Request) {
-    const validator = validate(request.body, ContactInformationSchema, { required: true })
-    if (validator) {
+    const data = await request.json();
+    const validator = validate(data, ContactInformationSchema, { required: true })
+    if (validator.valid) {
         try {
-            const data = await request.json();
             const result = await ContactInformation.create(data, { returning: true })
             return Response.json({ result })
         } catch (e) {
 
         }
     }
-    console.log("What are errors", validator.errors)
-    const errs = validator.errors.map(e => e.message);
-    // throw new BadRequestError("What are errs", errs);
+    const errs = validator.errors.map(e => e.stack);
     return Response.json({ errors: errs }, { status: 400 })
-
-
 }

@@ -28,22 +28,4 @@ const ContactInformation = sequelize.define('contact_information', {
     }
 }, {freezeTableName: true})
 
-// ContactInformation.init(
-//   {
-//     id: {
-//       type: DataTypes.INTEGER,
-//       autoIncrement: true,
-//       primaryKey: true,
-//     },
-//     columnName: {
-//       type: DataTypes.STRING,
-//       allowNull: false,
-//     },
-//   },
-//   {
-//     sequelize,
-//     modelName: 'MyModel',
-//   }
-// );
-
 export default ContactInformation;

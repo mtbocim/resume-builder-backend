@@ -1,11 +1,9 @@
-"use strict";
-
 /** API Route for CRUD operations for user/signup */
 
 import UserSignupSchema from "@/app/schemas/UserSignupSchema";
 import { validate } from "jsonschema";
 import bcrypt from "bcrypt";
-import User from "../../../models/User";
+import User from "@/app/models/User";
 
 export async function GET() {
     return Response.json({ message: "success" })

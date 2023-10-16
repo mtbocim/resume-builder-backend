@@ -1,7 +1,17 @@
 import sequelize from "@/app/config";
-import { DataTypes } from "sequelize";
+import { Model, DataTypes } from "sequelize";
 
-const User = sequelize.define('users', {
+interface UserModelInterface {
+    username: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    password: string;
+}
+
+interface UserInstance extends Model<UserModelInterface>, UserModelInterface { }
+
+const User = sequelize.define<UserInstance>('users', {
     username: {
         type: DataTypes.STRING,
         allowNull: false,

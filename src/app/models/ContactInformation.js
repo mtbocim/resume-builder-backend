@@ -26,6 +26,6 @@ const ContactInformation = sequelize.define('contact_information', {
         type: DataTypes.STRING,
         allowNull:true,
     }
-}, {freezeTableName: true})
+}, {freezeTableName: true, timestamps:false})
 
 export default ContactInformation;

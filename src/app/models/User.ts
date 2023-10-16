@@ -2,6 +2,7 @@ import sequelize from "@/app/config";
 import { Model, DataTypes } from "sequelize";
 
 interface UserModelInterface {
+    id:number;
     username: string;
     first_name: string;
     last_name: string;
@@ -12,10 +13,15 @@ interface UserModelInterface {
 interface UserInstance extends Model<UserModelInterface>, UserModelInterface { }
 
 const User = sequelize.define<UserInstance>('users', {
+    id:{
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
     username: {
         type: DataTypes.STRING,
         allowNull: false,
-        primaryKey: true
+        unique:true
     },
     first_name: {
         type: DataTypes.STRING,

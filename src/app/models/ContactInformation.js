@@ -26,7 +26,7 @@ const ContactInformation = sequelize.define('contact_information', {
         type: DataTypes.STRING,
         allowNull:true,
     }
-})
+}, {freezeTableName: true})
 
 // ContactInformation.init(
 //   {

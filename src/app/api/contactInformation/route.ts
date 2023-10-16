@@ -5,6 +5,7 @@
 import ContactInformation from "@/app/models/ContactInformation";
 import ContactInformationSchema from "@/app/schemas/ContactInformationSchema";
 import { validate } from "jsonschema";
+import { BadRequestError } from "../../nextAPIErrors.js"
 
 export async function GET() {
     try {
@@ -20,12 +21,16 @@ export async function POST(request: Request) {
     if (validator) {
         try {
             const data = await request.json();
-            const result = await ContactInformation.create(data, {returning:true})
+            const result = await ContactInformation.create(data, { returning: true })
             return Response.json({ result })
         } catch (e) {
 
         }
     }
+    console.log("What are errors", validator.errors)
+    const errs = validator.errors.map(e => e.message);
+    // throw new BadRequestError("What are errs", errs);
+    return Response.json({ errors: errs }, { status: 400 })
 
 
 }

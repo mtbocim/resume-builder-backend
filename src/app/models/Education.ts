@@ -1,5 +1,6 @@
 import {sequelize} from "@/app/config";
 import { Model, DataTypes } from "sequelize";
+import User from "./User";
 
 interface EducationInterface {
     id: number,
@@ -45,5 +46,7 @@ const Education = sequelize.define<EducationInstance>('education', {
     }
 }, {freezeTableName: true, timestamps:false});
 
+User.hasMany(Education, {foreignKey: {allowNull:false, name: 'user_id' }})
+Education.belongsTo(User, {foreignKey: 'user_id'})
 
 export default Education

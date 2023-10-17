@@ -1,6 +1,6 @@
 // const jwt = require("jsonwebtoken");
 import { sign } from "jsonwebtoken";
-import {SECRET_KEY} from '@/app/config.js'
+import { SECRET_KEY } from '@/app/config.js'
 
 /** return signed JWT {username, isAdmin} from user data. */
 

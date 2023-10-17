@@ -1,16 +1,16 @@
-import {sequelize} from "@/app/config";
-import {Model, DataTypes } from "sequelize";
-
+import { sequelize } from "@/app/config";
+import { Model, DataTypes } from "sequelize";
+import User from "./User";
 
 interface ContactInformationInterface {
-    id:number,
-    name:object,
-    phone_number:string,
-    email:string,
-    location:string | null
+    id: number,
+    name: object,
+    phone_number: string,
+    email: string,
+    location: string | null
 }
 
-interface ContactInformationInstance extends Model<ContactInformationInterface>, ContactInformationInterface {}
+interface ContactInformationInstance extends Model<ContactInformationInterface>, ContactInformationInterface { }
 const ContactInformation = sequelize.define<ContactInformationInstance>('contact_information', {
     id: {
         type: DataTypes.INTEGER,
@@ -34,8 +34,12 @@ const ContactInformation = sequelize.define<ContactInformationInstance>('contact
     },
     location: {
         type: DataTypes.STRING,
-        allowNull:true,
+        allowNull: true,
     }
-}, {freezeTableName: true, timestamps:false})
+}, { freezeTableName: true, timestamps: false });
+
+
+User.hasMany(ContactInformation, {foreignKey: {allowNull:false, name: 'user_id' }})
+ContactInformation.belongsTo(User, {foreignKey:'user_id'})
 
 export default ContactInformation;

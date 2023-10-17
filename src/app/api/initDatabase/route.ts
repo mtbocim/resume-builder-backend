@@ -1,4 +1,5 @@
-import { sequelize } from "../config.js";
+// import { sequelize } from "../config.js";
+import { sequelize } from "@/app/config.js";
 import ContactInformation from "@/app/models/ContactInformation";
 import User from "@/app/models/User";
 import Education from "@/app/models/Education";

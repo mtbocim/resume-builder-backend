@@ -1,4 +1,6 @@
-import { sequelize } from "../config.js";
+// import { sequelize } from "../config.js";
+import { sequelize } from "@/app/config.js";
+
 import { Model, DataTypes } from "sequelize";
 import User from "./User";
 import Tag from "./Tag";

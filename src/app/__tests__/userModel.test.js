@@ -5,8 +5,8 @@ describe('User Model', () => {
   beforeAll(async () => {
     await User.sync({ force: true });
   });
-
-  afterAll(async () => {
+  
+afterAll(async () => {
     await sequelize.close(); 
   });
 

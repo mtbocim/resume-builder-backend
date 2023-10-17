@@ -1,9 +1,10 @@
-import sequelize from "@/app/config";
+import {sequelize} from "@/app/config";
 import { Model, DataTypes } from "sequelize";
 
 interface UserModelInterface {
     id:number;
     username: string;
+    isAdmin: boolean;
     first_name: string;
     last_name: string;
     email: string;
@@ -22,6 +23,10 @@ const User = sequelize.define<UserInstance>('users', {
         type: DataTypes.STRING,
         allowNull: false,
         unique:true
+    },
+    isAdmin:{
+        type: DataTypes.BOOLEAN,
+        defaultValue:false
     },
     first_name: {
         type: DataTypes.STRING,

@@ -1,7 +1,17 @@
-import sequelize from "@/app/config";
-import { DataTypes } from "sequelize";
+import {sequelize} from "@/app/config";
+import {Model, DataTypes } from "sequelize";
 
-const ContactInformation = sequelize.define('contact_information', {
+
+interface ContactInformationInterface {
+    id:number,
+    name:object,
+    phone_number:string,
+    email:string,
+    location:string | null
+}
+
+interface ContactInformationInstance extends Model<ContactInformationInterface>, ContactInformationInterface {}
+const ContactInformation = sequelize.define<ContactInformationInstance>('contact_information', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,

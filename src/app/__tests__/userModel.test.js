@@ -1,4 +1,4 @@
-// import sequelize from "@/app/config";
+// import {sequelize} from "@/app/config";
 // import User from "@/app/models/User";
 const sequelize = require("../config");
 const User = require("../models/User");

@@ -1,4 +1,4 @@
-import sequelize from "@/app/config";
+import {sequelize} from "@/app/config";
 import { Model, DataTypes } from "sequelize";
 
 interface EducationInterface {

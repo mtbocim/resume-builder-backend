@@ -4,7 +4,7 @@ import { config } from "dotenv";
 config()
 
 
-// const SECRET_KEY = process.env.SECRET_KEY || "secret-dev";
+const SECRET_KEY = process.env.SECRET_KEY || "secret-dev";
 
 const sequelize = new Sequelize(process.env.DB, {
     dialect: 'postgres',
@@ -24,4 +24,4 @@ async function testDB(){
 }
 testDB();
 
-export default sequelize;
+export {SECRET_KEY, sequelize};

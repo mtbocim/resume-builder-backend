@@ -1,4 +1,4 @@
-import { sequelize } from "@/app/config";
+import { sequelize } from "../config.js";
 import ContactInformation from "@/app/models/ContactInformation";
 import User from "@/app/models/User";
 import Education from "@/app/models/Education";
@@ -8,7 +8,6 @@ import SkillSets from "@/app/models/SkillSet";
 import Skill from "@/app/models/Skill";
 
 export async function POST() {
-    // await sequelize.drop()
     await User.sync({ force: true })
     await ContactInformation.sync({ force: true });
     await Education.sync({ force: true });

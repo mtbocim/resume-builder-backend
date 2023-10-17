@@ -1,14 +1,8 @@
-// import {sequelize} from "@/app/config";
-// import User from "@/app/models/User";
-const sequelize = require("../config");
-const User = require("../models/User");
+import {sequelize} from "../config.js";
+import User from "../models/User";
 
 describe('User Model', () => {
   beforeAll(async () => {
-    await sequelize.sync();
-  });
-
-  beforeEach(async () => {
     await User.sync({ force: true });
   });
 
@@ -22,11 +16,11 @@ describe('User Model', () => {
       first_name: 'John',
       last_name: 'Doe',
       email: 'john@example.com',
-      password: 'securepassword',
+      password: 'Test1234!@#$',
     };
 
     const user = await User.create(userData);
-
+    
     expect(user.username).toEqual(userData.username);
     expect(user.first_name).toEqual(userData.first_name);
     expect(user.last_name).toEqual(userData.last_name);

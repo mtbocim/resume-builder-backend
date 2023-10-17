@@ -1,4 +1,4 @@
-import { sequelize } from "@/app/config";
+import { sequelize } from "../config.js";
 import { Model, DataTypes } from "sequelize";
 import User from "./User";
 import SkillSets from "./SkillSet";

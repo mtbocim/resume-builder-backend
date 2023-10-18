@@ -1,36 +1,37 @@
-import { sequelize } from "../config";
-import ContactInformation from "../models/ContactInformation";
-import User from "../models/User";
+// import prisma from "../prisma"
+// const { users, contactInformation } = prisma
+
+import {testClient} from "./setup/setup.api"
 
 describe("ContactInformation Model", () => {
     beforeAll(async () => {
-        await sequelize.sync();
-        await User.create({
+        testClient.$connect
+        
+        await testClient.users.create({data:{
             username: "testuser",
             first_name: "John",
             last_name: "Doe",
             email: "testuser@example.com",
             password: "Test1234!@#$",
-        });
+        }});
     });
 
     afterAll(async () => {
-        await sequelize.close();
     });
 
     it("should create and retrieve contact information", async () => {
-        const user = await User.findOne({ where: { username: "testuser" } });
+        const user = await testClient.users.findFirst({where:{username:"testuser"}});
 
-        const contactInfo = await ContactInformation.create({
+        const contactInfo = await testClient.contactInformation.create({data:{
             name: { first_name: "John", last_name: "Doe" },
             phone_number: "123-456-7890",
             email: "john.doe@example.com",
             location: "Test City",
             user_id: user.id,
-        });
+        }});
 
 
-        const retrievedInfo = await ContactInformation.findOne({
+        const retrievedInfo = await testClient.contactInformation.findFirst({
             where: { id: contactInfo.id },
         });
 

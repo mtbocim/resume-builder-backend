@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "baseUrl": "./",
+    "target": "ES2020",
     "lib": [
       "dom",
       "dom.iterable",
@@ -23,10 +24,7 @@
       }
     ],
     "paths": {
-      // "@/app/*": ["./src/app/*"],
-      "@/*": [
-        "./src/*"
-      ],
+      "@/*": ["./src/*"]
     }
   },
   "include": [
@@ -35,13 +33,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/api/*.ts",
-    "src/app/models/ContactInformation.js",
-    "src/app/models/Education.js",
-    "src/app/models/Skill.js",
-    "src/app/models/SkillSet.js",
-    "src/app/models/Summary.js",
-    "src/app/models/Tag.js",
-    "src/app/models/User.js",
   ],
   "exclude": [
     "node_modules"

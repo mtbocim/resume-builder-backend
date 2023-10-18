@@ -6,7 +6,7 @@ import ContactInformation from "@/app/models/ContactInformation";
 import ContactInformationSchema from "@/app/schemas/ContactInformationSchema";
 import { validate } from "jsonschema";
 // import { BadRequestError } from "../../nextAPIErrors.js"
-import prisma from "../../../../lib/prisma";
+import prisma from "../../prisma";
 
 export async function GET() {
     try {
@@ -22,6 +22,7 @@ export async function POST(request: Request) {
     const validator = validate(data, ContactInformationSchema, { required: true })
     if (validator.valid) {
         try {
+            console.log("what if the format of data", data)
             const result = await prisma.contactInformation.create({data})
             // const result = await ContactInformation.create(data, { returning: true })
             return Response.json({ result })

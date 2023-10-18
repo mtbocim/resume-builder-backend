@@ -29,12 +29,16 @@ CREATE TABLE "SkillSets" (
     "id" SERIAL NOT NULL,
     "skill_set" TEXT NOT NULL,
     "user_id" INTEGER NOT NULL,
+    "createdAt" TIMESTAMPTZ(6) NOT NULL,
+    "updatedAt" TIMESTAMPTZ(6) NOT NULL,
 
     CONSTRAINT "SkillSets_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "SkillTag" (
+    "createdAt" TIMESTAMPTZ(6) NOT NULL,
+    "updatedAt" TIMESTAMPTZ(6) NOT NULL,
     "SkillId" INTEGER NOT NULL,
     "TagId" INTEGER NOT NULL,
 
@@ -46,6 +50,8 @@ CREATE TABLE "Skills" (
     "id" SERIAL NOT NULL,
     "skill" TEXT NOT NULL,
     "skill_set_id" INTEGER NOT NULL,
+    "createdAt" TIMESTAMPTZ(6) NOT NULL,
+    "updatedAt" TIMESTAMPTZ(6) NOT NULL,
 
     CONSTRAINT "Skills_pkey" PRIMARY KEY ("id")
 );
@@ -54,6 +60,8 @@ CREATE TABLE "Skills" (
 CREATE TABLE "Summaries" (
     "id" SERIAL NOT NULL,
     "summary" TEXT,
+    "createdAt" TIMESTAMPTZ(6) NOT NULL,
+    "updatedAt" TIMESTAMPTZ(6) NOT NULL,
     "user_id" INTEGER NOT NULL,
 
     CONSTRAINT "Summaries_pkey" PRIMARY KEY ("id")
@@ -61,6 +69,8 @@ CREATE TABLE "Summaries" (
 
 -- CreateTable
 CREATE TABLE "SummaryTag" (
+    "createdAt" TIMESTAMPTZ(6) NOT NULL,
+    "updatedAt" TIMESTAMPTZ(6) NOT NULL,
     "SummaryId" INTEGER NOT NULL,
     "TagId" INTEGER NOT NULL,
 
@@ -72,6 +82,8 @@ CREATE TABLE "Tags" (
     "id" SERIAL NOT NULL,
     "tag" TEXT NOT NULL,
     "user_id" INTEGER NOT NULL,
+    "createdAt" TIMESTAMPTZ(6) NOT NULL,
+    "updatedAt" TIMESTAMPTZ(6) NOT NULL,
 
     CONSTRAINT "Tags_pkey" PRIMARY KEY ("id")
 );
@@ -85,6 +97,8 @@ CREATE TABLE "Users" (
     "last_name" VARCHAR(255) NOT NULL,
     "email" VARCHAR(255) NOT NULL,
     "password" VARCHAR(255) NOT NULL,
+    "createdAt" TIMESTAMPTZ(6) NOT NULL,
+    "updatedAt" TIMESTAMPTZ(6) NOT NULL,
 
     CONSTRAINT "Users_pkey" PRIMARY KEY ("id")
 );

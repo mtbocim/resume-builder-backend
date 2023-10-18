@@ -1,16 +1,13 @@
-"use strict";
-
 /** API Route for CRUD operations for ContactInformation */
 
-import ContactInformation from "@/app/models/ContactInformation";
 import ContactInformationSchema from "@/app/schemas/ContactInformationSchema";
 import { validate } from "jsonschema";
-// import { BadRequestError } from "../../nextAPIErrors.js"
-import prisma from "../../prisma";
+import prisma from "@/app/prisma";
+const { contactInformation } = prisma
 
 export async function GET() {
     try {
-        const data = await prisma.contactInformation.findMany();
+        const data = await contactInformation.findMany();
         return Response.json({ data }, { status: 200 })
     } catch (e) {
         return Response.json({ error: 'failed to load data' }, { status: 404 })
@@ -23,8 +20,7 @@ export async function POST(request: Request) {
     if (validator.valid) {
         try {
             console.log("what if the format of data", data)
-            const result = await prisma.contactInformation.create({data})
-            // const result = await ContactInformation.create(data, { returning: true })
+            const result = await contactInformation.create({data})
             return Response.json({ result })
         } catch (e) {
 

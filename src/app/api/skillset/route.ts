@@ -1,11 +1,11 @@
 /** API route for CRUD operations for skill sets */
 
-import SkillSets from "@/app/models/SkillSet";
-
+import prisma from "@/app/prisma";
+const {skillSets} = prisma
 
 export async function GET(){
     try{
-        const results = await SkillSets.findAll();
+        const results = await skillSets.findMany();
         return Response.json({results, message: "success" },{status:200})
     } catch (e){
         return Response.json({ message: "Bad request" }, { status: 400 })

@@ -103,7 +103,7 @@ model Users {
   email              String               @db.VarChar(255)
   password           String               @db.VarChar(255)
   createdAt          DateTime             @db.Timestamptz(6)
-  updatedAt          DateTime             @db.Timestamptz(6)
+  updatedAt          DateTime             @db.Timestamptz(6) @updatedAt
   ContactInformation ContactInformation[]
   Education          Education[]
   SkillSets          SkillSets[]

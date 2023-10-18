@@ -17,10 +17,10 @@ export async function POST(request: Request){
 
     try{
         const {skill_set, user_id} = data;
-        const result = await SkillSets.create({
+        const result = await skillSets.create({data:{
            skill_set,
            user_id
-        }, {returning:true});
+        }});
         return Response.json({result, message: "success" },{status:201})
     } catch(e){
         return Response.json({ message: "Bad request" }, { status: 400 })

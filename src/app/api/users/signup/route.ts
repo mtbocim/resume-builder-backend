@@ -16,7 +16,6 @@ export async function POST(request: Request) {
 
     if (validator.valid) {
         const duplicateCheck = await users.findFirst({where:{username:data.username}})
-        // const duplicateCheck = await User.findOne({ where: { username: data.username } })
         if (duplicateCheck !== null) {
             return Response.json({ error: `Duplicate username: ${data.username}` }, { status: 400 })
         }

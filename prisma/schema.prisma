@@ -33,15 +33,11 @@ model SkillSets {
   id        Int      @id @default(autoincrement())
   skill_set String
   user_id   Int
-  createdAt DateTime @db.Timestamptz(6)
-  updatedAt DateTime @db.Timestamptz(6)
   Users     Users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
   Skills    Skills[]
 }
 
 model SkillTag {
-  createdAt DateTime @db.Timestamptz(6)
-  updatedAt DateTime @db.Timestamptz(6)
   SkillId   Int
   TagId     Int
   Skills    Skills   @relation(fields: [SkillId], references: [id], onDelete: Cascade)
@@ -54,8 +50,6 @@ model Skills {
   id           Int        @id @default(autoincrement())
   skill        String
   skill_set_id Int
-  createdAt    DateTime   @db.Timestamptz(6)
-  updatedAt    DateTime   @db.Timestamptz(6)
   SkillTag     SkillTag[]
   SkillSets    SkillSets  @relation(fields: [skill_set_id], references: [id], onDelete: Cascade)
 
@@ -65,16 +59,12 @@ model Skills {
 model Summaries {
   id         Int          @id @default(autoincrement())
   summary    String?
-  createdAt  DateTime     @db.Timestamptz(6)
-  updatedAt  DateTime     @db.Timestamptz(6)
   user_id    Int
   Users      Users        @relation(fields: [user_id], references: [id], onDelete: Cascade)
   SummaryTag SummaryTag[]
 }
 
 model SummaryTag {
-  createdAt DateTime  @db.Timestamptz(6)
-  updatedAt DateTime  @db.Timestamptz(6)
   SummaryId Int
   TagId     Int
   Summaries Summaries @relation(fields: [SummaryId], references: [id], onDelete: Cascade)
@@ -87,8 +77,6 @@ model Tags {
   id         Int          @id @default(autoincrement())
   tag        String
   user_id    Int
-  createdAt  DateTime     @db.Timestamptz(6)
-  updatedAt  DateTime     @db.Timestamptz(6)
   SkillTag   SkillTag[]
   SummaryTag SummaryTag[]
   Users      Users        @relation(fields: [user_id], references: [id], onDelete: Cascade)

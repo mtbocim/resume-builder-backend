@@ -2,7 +2,8 @@
 
 import { validate } from "jsonschema";
 import bcrypt from "bcrypt";
-import User from "@/app/models/User";
+import prisma from "@/app/prisma";
+const {users} = prisma
 import UserLoginSchema from "@/app/schemas/UserLoginSchema";
 import createToken from "@/app/helpers/tokens.js"
 
@@ -12,7 +13,7 @@ export async function POST(request: Request) {
     if (validator.valid) {
         try {
             const { username, password } = data;
-            const result = await User.findOne({where:{username}})
+            const result = await users.findFirst({where:{username}})
             if (result === null) {
                 return Response.json({ error: "Incorrect username or password" })
             }

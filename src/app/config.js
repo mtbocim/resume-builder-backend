@@ -1,12 +1,12 @@
 import { Sequelize } from "sequelize"
-import * as pg from 'pg';
+const pg = require('pg')
 import { config } from "dotenv";
 config()
 
 
 const SECRET_KEY = process.env.SECRET_KEY || "secret-dev";
 
-const sequelize = new Sequelize(process.env.DB, {
+const db = new Sequelize(process.env.DB, {
   dialect: 'postgres',
   dialectModule: pg,
   host: 'localhost',
@@ -24,4 +24,4 @@ const sequelize = new Sequelize(process.env.DB, {
 // }
 // testDB();
 
-export { SECRET_KEY, sequelize };
+export { SECRET_KEY, db };

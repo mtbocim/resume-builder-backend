@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,9 +24,26 @@
     ],
     "paths": {
       // "@/app/*": ["./src/app/*"],
-      "@/*": ["./src/*"],
+      "@/*": [
+        "./src/*"
+      ],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/models/ContactInformation.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/api/*.ts",
+    "src/app/models/ContactInformation.js",
+    "src/app/models/Education.js",
+    "src/app/models/Skill.js",
+    "src/app/models/SkillSet.js",
+    "src/app/models/Summary.js",
+    "src/app/models/Tag.js",
+    "src/app/models/User.js",
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

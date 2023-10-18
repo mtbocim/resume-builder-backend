@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ContactInformation {
+  id           Int     @id @default(autoincrement())
+  name         Json    @db.Json
+  phone_number String  @db.VarChar(255)
+  email        String  @db.VarChar(255)
+  location     String? @db.VarChar(255)
+  user_id      Int
+  Users        Users   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model Education {
+  id               Int       @id @default(autoincrement())
+  institution_name String    @db.VarChar(255)
+  ed_focus         String?   @db.VarChar(255)
+  gpa              Decimal?  @db.Decimal(4, 3)
+  location         String?   @db.VarChar(255)
+  start_date       DateTime? @db.Date
+  finish_date      DateTime? @db.Date
+  user_id          Int
+  Users            Users     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model SkillSets {
+  id        Int      @id @default(autoincrement())
+  skill_set String
+  user_id   Int
+  createdAt DateTime @db.Timestamptz(6)
+  updatedAt DateTime @db.Timestamptz(6)
+  Users     Users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  Skills    Skills[]
+}
+
+model SkillTag {
+  createdAt DateTime @db.Timestamptz(6)
+  updatedAt DateTime @db.Timestamptz(6)
+  SkillId   Int
+  TagId     Int
+  Skills    Skills   @relation(fields: [SkillId], references: [id], onDelete: Cascade)
+  Tags      Tags     @relation(fields: [TagId], references: [id], onDelete: Cascade)
+
+  @@id([SkillId, TagId])
+}
+
+model Skills {
+  id           Int        @id @default(autoincrement())
+  skill        String
+  skill_set_id Int
+  createdAt    DateTime   @db.Timestamptz(6)
+  updatedAt    DateTime   @db.Timestamptz(6)
+  SkillTag     SkillTag[]
+  SkillSets    SkillSets  @relation(fields: [skill_set_id], references: [id], onDelete: Cascade)
+
+  @@unique([skill_set_id, skill], map: "skills_skill_set_id_skill")
+}
+
+model Summaries {
+  id         Int          @id @default(autoincrement())
+  summary    String?
+  createdAt  DateTime     @db.Timestamptz(6)
+  updatedAt  DateTime     @db.Timestamptz(6)
+  user_id    Int
+  Users      Users        @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  SummaryTag SummaryTag[]
+}
+
+model SummaryTag {
+  createdAt DateTime  @db.Timestamptz(6)
+  updatedAt DateTime  @db.Timestamptz(6)
+  SummaryId Int
+  TagId     Int
+  Summaries Summaries @relation(fields: [SummaryId], references: [id], onDelete: Cascade)
+  Tags      Tags      @relation(fields: [TagId], references: [id], onDelete: Cascade)
+
+  @@id([SummaryId, TagId])
+}
+
+model Tags {
+  id         Int          @id @default(autoincrement())
+  tag        String
+  user_id    Int
+  createdAt  DateTime     @db.Timestamptz(6)
+  updatedAt  DateTime     @db.Timestamptz(6)
+  SkillTag   SkillTag[]
+  SummaryTag SummaryTag[]
+  Users      Users        @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model Users {
+  id                 Int                  @id @default(autoincrement())
+  username           String               @unique @db.VarChar(255)
+  isAdmin            Boolean?             @default(false)
+  first_name         String               @db.VarChar(255)
+  last_name          String               @db.VarChar(255)
+  email              String               @db.VarChar(255)
+  password           String               @db.VarChar(255)
+  createdAt          DateTime             @db.Timestamptz(6)
+  updatedAt          DateTime             @db.Timestamptz(6)
+  ContactInformation ContactInformation[]
+  Education          Education[]
+  SkillSets          SkillSets[]
+  Summaries          Summaries[]
+  Tags               Tags[]
+}

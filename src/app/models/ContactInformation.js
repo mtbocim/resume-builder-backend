@@ -1,19 +1,20 @@
 // import { sequelize } from "../config.js";
-import { sequelize } from "@/app/config.js";
+import { db } from "@/app/config.js";
 
 import { Model, DataTypes } from "sequelize";
 import User from "./User";
 
-interface ContactInformationInterface {
-    id: number,
-    name: object,
-    phone_number: string,
-    email: string,
-    location: string | null
-}
+// interface ContactInformationInterface {
+//     id: number,
+//     name: object,
+//     phone_number: string,
+//     email: string,
+//     location: string | null
+// }
 
-interface ContactInformationInstance extends Model<ContactInformationInterface>, ContactInformationInterface { }
-const ContactInformation = sequelize.define<ContactInformationInstance>('contact_information', {
+// interface ContactInformationInstance extends Model<ContactInformationInterface>, ContactInformationInterface { }
+const ContactInformation = db.define('ContactInformation', {
+// const ContactInformation = sequelize.define<ContactInformationInstance>('contact_information', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,

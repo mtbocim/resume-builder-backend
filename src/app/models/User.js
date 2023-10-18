@@ -1,21 +1,22 @@
 // import {sequelize} from "../config.js";
-import { sequelize } from "@/app/config.js";
+import { db } from "@/app/config.js";
 
 import { Model, DataTypes } from "sequelize";
 
-interface UserModelInterface {
-    id:number;
-    username: string;
-    isAdmin: boolean;
-    first_name: string;
-    last_name: string;
-    email: string;
-    password: string;
-}
+// interface UserModelInterface {
+//     id?:number;
+//     username: string;
+//     isAdmin?: boolean;
+//     first_name: string;
+//     last_name: string;
+//     email: string;
+//     password: string;
+// }
 
-interface UserInstance extends Model<UserModelInterface>, UserModelInterface { }
+// interface UserInstance extends Model<UserModelInterface>, UserModelInterface { }
 
-const User = sequelize.define<UserInstance>('users', {
+// const User = sequelize.define<UserInstance>('users', {
+const User = db.define('User', {
     id:{
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -49,6 +50,6 @@ const User = sequelize.define<UserInstance>('users', {
         type: DataTypes.STRING,
         allowNull: false
     }
-}, { freezeTableName: true });
+});
 
 export default User;

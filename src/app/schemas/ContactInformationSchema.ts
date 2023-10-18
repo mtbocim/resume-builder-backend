@@ -21,13 +21,18 @@ const ContactInformationSchema: Schema = {
         "location":{
             type:"string",
             required:false
+        },
+        "user_id":{
+            type:"number",
+            required:true
         }
     },
     "additionalProperties":false,
     "required": [
         "name",
         "phone_number",
-        "email"
+        "email",
+        "user_id"
     ]
 }
 
